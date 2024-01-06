@@ -32,3 +32,17 @@ Constraints:
 0 <= arr.length <= 1000
 -109 <= arr[i] <= 109
 fn returns a number
+
+solution:
+/**
+ * @param {number[]} arr
+ * @param {Function} fn
+ * @return {number[]}
+ */
+var map = function(arr, fn) {
+    let returnedArray = []
+    for (var i=0; i< arr.length; i++){
+        returnedArray[i] = fn(arr[i], i)
+    }
+    return returnedArray
+};
