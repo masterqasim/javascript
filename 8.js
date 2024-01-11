@@ -42,3 +42,25 @@ Constraints:
 -1000 <= x <= 1000
 0 <= functions.length <= 1000
 all functions accept and return a single integer
+
+solution:
+/**
+ * @param {Function[]} functions
+ * @return {Function}
+ */
+var compose = function(functions) {
+    
+    return function(x) {
+        let result = x
+        for(var i=functions.length-1; i>=0; i--){
+            let fn = functions[i]
+            result = fn(result)
+        }
+        return result 
+    }
+};
+
+/**
+ * const fn = compose([x => x + 1, x => 2 * x])
+ * fn(4) // 9
+ */
