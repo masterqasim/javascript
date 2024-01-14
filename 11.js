@@ -64,3 +64,36 @@ Constraints:
 actions.length === values.length
 actions[i] is one of "call" and "getCallCount"
 fnName is one of "sum", "factorial" and "fib"
+
+solution:
+/**
+ * @param {Function} fn
+ * @return {Function}
+ */
+function memoize(fn) {
+    let obj = {}
+    
+    return function(...args) {
+         
+       let key = JSON.stringify(args)
+       if (key in obj){
+           return obj[key]
+       }
+       let result = fn(...args)
+       obj[key] = result 
+       return result
+
+    }
+}
+
+
+/** 
+ * let callCount = 0;
+ * const memoizedFn = memoize(function (a, b) {
+ *	 callCount += 1;
+ *   return a + b;
+ * })
+ * memoizedFn(2, 3) // 5
+ * memoizedFn(2, 3) // 5
+ * console.log(callCount) // 1 
+ */
