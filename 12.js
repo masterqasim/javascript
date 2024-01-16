@@ -22,3 +22,25 @@ Explanation: The two input promises resolve with the values of 10 and -12 respec
 Constraints:
 
 promise1 and promise2 are promises that resolve with a number
+
+solution:
+/**
+ * @param {Promise} promise1
+ * @param {Promise} promise2
+ * @return {Promise}
+ */
+var addTwoPromises = async function(promise1, promise2) {
+ try {
+    const result1 = await promise1;
+    const result2 = await promise2;
+    return result1 + result2;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
+
+/**
+ * addTwoPromises(Promise.resolve(2), Promise.resolve(2))
+ *   .then(console.log); // 4
+ */
