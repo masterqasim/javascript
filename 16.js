@@ -75,3 +75,28 @@ Constraints:
 0 <= inputs.length <= 10
 0 <= t <= 1000
 fn returns a promise
+
+Solution:
+
+/**
+ * @param {Function} fn
+ * @param {number} t
+ * @return {Function}
+ */
+var timeLimit = function(fn, t) {
+    
+    return async function(...args) {
+        const promise1 = fn(...args)
+        const promise2 = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                reject('Time Limit Exceeded')
+            },t)
+        })
+        return Promise.race([promise1,promise2])
+    }
+};
+
+/**
+ * const limited = timeLimit((t) => new Promise(res => setTimeout(res, t)), 100);
+ * limited(150).catch(console.log) // "Time Limit Exceeded" at t=100ms
+ */
