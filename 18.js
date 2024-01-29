@@ -70,3 +70,13 @@ Constraints:
 1 <= calls.length <= 10
 0 <= calls[i].t <= 1000
 0 <= calls[i].inputs.length <= 10
+
+solution:
+
+var debounce = function(fn, t = 1000) {
+    let timer;
+    return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), t);
+    }
+};
